@@ -303,9 +303,16 @@ class ServicesForm(GluuSetupForm):
         
                 self.parentApp.installObject.oxd_server_https = oxd_server_https
 
+
+
         oxd_hostname, oxd_port = self.parentApp.installObject.parse_url(self.parentApp.installObject.oxd_server_https)
         if not oxd_port: 
             oxd_port=8443
+
+        if self.installOxd.value:
+            result = npyscreen.notify_yes_no(msg.ask_use_gluu_storage_oxd, title=msg.ask_use_gluu_storage_oxd_title)
+            if result:
+                self.parentApp.installObject.oxd_use_gluu_storage = True
 
         self.parentApp.installObject.templateRenderingDict['oxd_hostname'] = oxd_hostname
         self.parentApp.installObject.templateRenderingDict['oxd_port'] = str(oxd_port)
