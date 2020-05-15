@@ -627,6 +627,7 @@ class Setup(object):
         self.installOxd = False
         self.oxd_package = ''
         self.oxd_use_gluu_storage = False
+        self.generateOxdCertificate = False
 
         #casa install options
         self.installCasa = False
@@ -1604,6 +1605,7 @@ class Setup(object):
         self.run([self.cmd_chmod, '-R', "755", "%s/bin/" % jreDestinationPath])
         self.run([self.cmd_chown, '-R', 'root:root', jreDestinationPath])
         self.run([self.cmd_chown, '-h', 'root:root', self.jre_home])
+        
 
         if not os.path.exists('/opt/jre/jre'):
             self.run([self.cmd_mkdir, '-p', '/opt/jre/jre'])
@@ -5226,9 +5228,10 @@ class Setup(object):
         oxd_keystore_fn = os.path.join(oxd_root, 'conf/oxd-server.keystore')
         self.run(['cp', '-f', '/tmp/oxd.keystore', oxd_keystore_fn])
         self.run(['chown', 'jetty:jetty', oxd_keystore_fn])
-
+        
         for f in ('/tmp/oxd.crt', '/tmp/oxd.key', '/tmp/oxd.p12', '/tmp/oxd.keystore'):
             self.run(['rm', '-f', f])
+
 
         self.enable_service_at_start('oxd-server')
 
@@ -5673,10 +5676,11 @@ if __name__ == '__main__':
     parser.add_argument('-properties-password', help="Encoded setup.properties file password")
     parser.add_argument('--install-casa', help="Install Casa", action='store_true')
     parser.add_argument('--install-oxd', help="Install Oxd Server", action='store_true')
-    parser.add_argument('--install-fido2', help="Install Fido2")
     parser.add_argument('--install-scim', help="Install Scim Server", action='store_true')
+    parser.add_argument('--install-fido2', help="Install Fido2")
     parser.add_argument('--oxd-use-gluu-storage', help="Use Gluu Storage for Oxd Server", action='store_true')
     parser.add_argument('-couchbase-bucket-prefix', help="Set prefix for couchbase buckets", default='gluu')
+    parser.add_argument('--generate-oxd-certificate', help="Generate certificate for oxd based on hostname", action='store_true')
 
     argsp = parser.parse_args()
 
@@ -5793,9 +5797,10 @@ if __name__ == '__main__':
     setupOptions['listenAllInterfaces'] = argsp.listen_all_interfaces
     setupOptions['installCasa'] = argsp.install_casa
     setupOptions['installOxd'] = argsp.install_oxd
-    setupOptions['installFido2'] = argsp.install_fido2
     setupOptions['installScimServer'] = argsp.install_scim
+    setupOptions['installFido2'] = argsp.install_fido2
     setupOptions['couchbase_bucket_prefix'] = argsp.couchbase_bucket_prefix
+    setupOptions['generateOxdCertificate'] = argsp.generate_oxd_certificate
 
     if argsp.remote_ldap:
         setupOptions['wrends_install'] = REMOTE
