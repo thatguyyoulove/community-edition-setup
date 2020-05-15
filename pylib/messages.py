@@ -39,6 +39,7 @@ class msg:
     installOxd_label = "Install Oxd"
     installCasa_label = "Install Casa"
     installScimServer_label = "Install Scim"
+    installFido2_label = "Install Fido2"
     
     insufficient_free_disk_space = "Available free disk space was determined to be {1:0.1f} GB. This is less than the required disk space of {} GB."
     insufficient_mem_size = "RAM size was determined to be {:0.1f} GB. This is less than the suggested RAM size of {} GB"
@@ -80,6 +81,7 @@ class msg:
     ask_installOxd = "Install Oxd"
     ask_wrends_install = "Install WrenDS"
     ask_installScimServer = "Install Scim Server"
+    ask_installFido2 = "Install Fido2"
 
     wrends_install_options = ["Don't Install","Install Locally","Use Remote WrenDS"]
     oxd_url_label = "oxd Server URL"
@@ -120,7 +122,8 @@ class msg:
     installation_description_oxd = "oxd exposes simple, static APIs web application developers can use to implement user authentication and authorization against an OAuth 2.0 authorization server like Gluu."
     installation_description_casa = "Gluu Casa is a self-service web portal for end-users to manage authentication and authorization preferences for their account in a Gluu Server."
     installation_description_scim = "The Gluu Server implements SCIM to offer standard REST APIs for performing CRUD operations (create, read, update and delete) against user data."
-    
+    installation_description_fido2 = "FIDO 2.0 (FIDO2) is an open authentication standard that enables people to leverage common devices to authenticate to online services in both mobile and desktop environments"
+
     installation_description_scripts = "Interception scripts can be used to implement custom business logic for authentication, authorization and more in a way that is upgrade-proof and doesn't require forking the Gluu Server code."
     
     
