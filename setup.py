@@ -5598,6 +5598,7 @@ if __name__ == '__main__':
     parser.add_argument('-properties-password', help="Encoded setup.properties file password")
     parser.add_argument('--install-casa', help="Install Casa", action='store_true')
     parser.add_argument('--install-oxd', help="Install Oxd Server", action='store_true')
+    parser.add_argument('--install-scim', help="Install Scim Server", action='store_true')
     parser.add_argument('--oxd-use-gluu-storage', help="Use Gluu Storage for Oxd Server", action='store_true')
     parser.add_argument('-couchbase-bucket-prefix', help="Set prefix for couchbase buckets", default='gluu')
 
@@ -5631,6 +5632,7 @@ if __name__ == '__main__':
         'installOxAuthRP': False,
         'installPassport': False,
         'installGluuRadius': False,
+        'installScimServer': False,
         'installCasa': False,
         'installOxd': False,
         'loadTestData': False,
@@ -5714,6 +5716,8 @@ if __name__ == '__main__':
     setupOptions['listenAllInterfaces'] = argsp.listen_all_interfaces
     setupOptions['installCasa'] = argsp.install_casa
     setupOptions['installOxd'] = argsp.install_oxd
+    setupOptions['installScimServer'] = argsp.install_scim
+    
     setupOptions['couchbase_bucket_prefix'] = argsp.couchbase_bucket_prefix
 
     if argsp.remote_ldap:
