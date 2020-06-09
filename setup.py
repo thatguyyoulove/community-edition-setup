@@ -5007,7 +5007,7 @@ class Setup(object):
 
             tmp_fn = '/tmp/77-customAttributes.ldif'
             with open(tmp_fn, 'wb') as w:
-                ldif_writer = LDIFWriter(w)
+                ldif_writer = LDIFWriter(w, cols=1000)
                 for dn, entry in obcl_parser.entries:                
                     ldif_writer.unparse(dn, entry)
 
